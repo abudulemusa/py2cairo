@@ -159,7 +159,7 @@ def check_python_headers(conf):
 		conf.find_program('python-config-%s'%num,var='PYTHON_CONFIG',mandatory=False)
 	includes=[]
 	if conf.env.PYTHON_CONFIG:
-		for incstr in conf.cmd_and_log(conf.env.PYTHON_CONFIG + ' --includes').strip().split():
+		for incstr in conf.cmd_and_log(conf.env.PYTHON+[conf.env.PYTHON_CONFIG,'--includes']).strip().split():
 			if(incstr.startswith('-I')or incstr.startswith('/I')):
 				incstr=incstr[2:]
 			if incstr not in includes:
@@ -177,7 +177,7 @@ def check_python_headers(conf):
 	if env['CXX_NAME']=='gcc':
 		env.append_value('CXXFLAGS_PYEMBED',['-fno-strict-aliasing'])
 		env.append_value('CXXFLAGS_PYEXT',['-fno-strict-aliasing'])
-	conf.check(header_name='Python.h',define_name='HAVE_PYTHON_H',uselib='PYEMBED',fragment=FRAG,errmsg='Could not find the python development headers')
+	# conf.check(header_name='Python.h',define_name='HAVE_PYTHON_H',uselib='PYEMBED',fragment=FRAG,errmsg='Could not find the python development headers')
 def check_python_version(conf,minver=None):
 	assert minver is None or isinstance(minver,tuple)
 	pybin=conf.env['PYTHON']
