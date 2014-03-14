@@ -8,7 +8,7 @@ d = top
 
 APPNAME='py2cairo'
 VERSION='1.10.1'
-cairo_version_required = '1.10.2'
+# cairo_version_required = '1.10.2'
 xpyb_version_required  = '1.3'
 
 
@@ -29,9 +29,9 @@ def configure(ctx):
   ctx.check_python_version((2,6,0))
   ctx.check_python_headers()
 
-  ctx.check_cfg(package='cairo',
-                atleast_version=cairo_version_required,
-                args='--cflags --libs')
+  # ctx.check_cfg(package='cairo',
+  #               atleast_version=cairo_version_required,
+  #               args='--cflags --libs')
 
   ctx.check_cfg(package='xpyb',
                 atleast_version=xpyb_version_required,
