@@ -159,7 +159,7 @@ def check_python_headers(conf):
 		conf.find_program('python-config-%s'%num,var='PYTHON_CONFIG',mandatory=False)
 	includes=[]
 	if conf.env.PYTHON_CONFIG:
-		for incstr in conf.cmd_and_log(conf.env.PYTHON+[conf.env.PYTHON_CONFIG,'--includes']).strip().split():
+		for incstr in conf.cmd_and_log(conf.env.PYTHON_CONFIG + ' --includes').strip().split():
 			if(incstr.startswith('-I')or incstr.startswith('/I')):
 				incstr=incstr[2:]
 			if incstr not in includes:
